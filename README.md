@@ -1,7 +1,7 @@
 # To-do-list
 This web Application is a digital tool designed to help users keep track of tasks and manage their daily responsibilities. It typically offers the following features:
 
-  1- Task Entry: Users can easily add tasks or items to their to-do list. They can provide a task name and the start date of the task.
+  1- Task Entry: Users can easily add tasks or items to their to-do list. They can provide a task name and the start date of the task. `<br>`
   2- Task Filtering: Users can filter tasks based on specific criteria (e.g., show only incomplete tasks, show completed tasks) for better management.
   3- Task Editing: Users can edit and update task details.
   4- Task Completion: Users can mark tasks as complete when they finish them, providing a sense of accomplishment.
