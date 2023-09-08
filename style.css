@@ -1,0 +1,625 @@
+/* Styles for desktop screens */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: white;
+  transition: 2s;
+  width: 100%;
+  scroll-behavior: smooth; 
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  position: relative;
+}
+
+
+nav{
+  background-color: hsl(252, 30%, 100%);
+  background-color: mediumpurple;
+  color: hsl(252, 30%, 17%);
+  overflow: hidden;
+  padding: 0.7rem 0;
+  top: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 999;
+  
+}
+
+.nav-container{
+  width: 100%;
+  outline: none;
+  padding: 0;
+}
+
+nav h2{
+  margin-left: 50px;
+  margin-top: 10px;
+  font-weight: bold;
+  color: white;
+}
+
+nav .nav-container{
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.search-bar{
+  background-color: hsl(252, 30%, 98%);
+  border-radius: 2rem;
+  padding:  0.6rem 1rem;
+  display: flex;
+}
+
+.search-bar input[type="search"] {
+  background: transparent;
+  outline: 0;
+  border: none;
+  width: 30vw;
+  margin-left: 1rem;
+  font-size: 1.2rem;
+  color: hsl(252, 30%, 17%);
+}
+
+
+.search-bar span{
+  margin-top: 6px;
+}
+
+#search-btn{
+  box-shadow: 0px 0px 0px;
+  background-color: hsl(252, 30%, 98%);
+}
+
+nav .nav-buttons{
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+  gap: 1.2rem;
+}
+
+#darkMode-btn, #deleteAll-btn {
+  background-color: white;
+  color: rgb(255, 200 ,0);
+  height: 50px;
+  width: 50px;
+  font-size: 28px;
+  margin-left: 3px;
+  margin-top: 1px;
+}
+
+/* #deleteAll-btn */
+
+#darkMode-btn:hover, #deleteAll-btn:hover {
+  color: white;
+  background-color: rgb(255, 200 ,0);
+}
+
+
+#centered-content {
+  flex-grow: 1;
+  display: inline-block;
+}
+
+.tasks-table {
+  width: 60%;
+  margin-top: 250px;
+  margin-left: 20%;
+  background-color: rgb(239, 239 ,239);
+}
+
+
+button {
+  border: none;
+  font-size: 20px;
+  box-shadow: 0px 3px 5px rgba(168, 168, 168, 0.38);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  line-height: 0;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 6px 10px rgba(168, 168, 168, 0.38);
+}
+
+#add-btn {
+  background: white;
+  color: rgb(255, 200 ,0);
+  margin: 1rem;
+  width: 50px;
+  height: 50px
+}
+
+#add-btn:hover {
+  color: white;
+  background: rgb(255, 200 ,0);
+}
+
+#task-info {
+  width: 70%;
+  margin-left: 8px;
+
+}
+
+#task-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 20%;
+}
+
+#task-date {
+  font-size: 25px;
+  margin-right: 5px;
+}
+
+.task {
+  display: flex;
+  background-color: white;
+  padding: 6px;
+  border-bottom: solid black 1px;
+  transition: box-shadow 0.3s ease;
+}
+
+.done {
+  background-color: rgb(158, 253 ,160);
+}
+
+.task:hover {
+  box-shadow: 0px 3px 15px rgba(97, 97, 97, 0.843);
+}
+
+#header {
+  background-color:mediumpurple;
+  text-align: center;
+  padding: 8px 8px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+
+#header h1 {
+  font-weight: bold;
+  margin-left: 85px;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border: none;
+}
+
+.select {
+  margin: 1rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50px;
+}
+
+select {
+  color:black;
+  width: 10rem;
+  height: 3.1rem;
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 15px;
+}
+
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  background:rgb(255, 200 ,0);
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.select::hover::after {
+  background: white;
+  color: rgb(255, 200 ,0)
+}
+
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+
+.footer-title {
+  margin-top: 15px;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+.footer-title span a{
+  color: rgb(197, 168, 255);
+  text-decoration: none;
+  transition: all 0.5s ease;
+}
+.footer-title span a:hover{
+  color: rgb(255, 200, 0);
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.social-icons a {
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 15px;
+  padding: 5px;
+  font-size: 25px;
+  transition: all 0.5s ease;
+}
+
+.social-icons a:hover {
+  color: white;
+  transform: scale(1.03);
+}
+
+
+/* Styles for tablet screens */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  #header {
+    padding: 6px 6px;
+  }
+  
+  
+  #header h1 {
+    margin: 0;
+    font-size: 32px;
+  }
+
+  .tasks-table {
+    width:80%;
+    margin-top: 250px;
+    margin-left: 10%;
+  }
+
+  #task-info {
+    font-size: 16px;
+  }
+
+  #task-date {
+    font-size: 18px;
+  }
+
+  
+  #task-actions {
+    gap: 1.2rem;
+  }
+
+  #task-actions button {
+    width: 40px;
+    height: 40px;
+  }
+ 
+  nav h2{
+    margin-left: 50px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .search-bar{
+    padding:  0.5rem 0.8rem;
+  }
+  
+  .search-bar input[type="search"] {
+    width: 30vw;
+    margin-left: 1rem;
+    font-size: 1rem;
+  }
+  
+  
+  .search-bar span{
+    margin-top: 7px;
+  }
+  
+}
+
+
+
+@media (min-width: 380px) and (max-width: 767px){
+
+  .nav-container{
+    width: 100%;
+  }
+
+  nav h2{
+    margin-left: 15px;
+    margin-top: 10px;
+    font-size: 17px;
+  }
+
+  .search-bar{
+    padding:  0.3rem 0.4rem;
+  }
+  
+  .search-bar input[type="search"] {
+    width: 130px;
+    font-size: 0.57rem;
+  
+  }
+  
+  .search-bar span{
+    margin-top:32px;
+  }
+  
+
+  #search-btn{
+    font-size: 9px;
+    width: 15px;
+    height: 15px;
+    margin-top: 10px;
+  }
+  
+  nav .nav-buttons{
+    gap: 0.35rem;
+    margin-right: 15px;
+  }
+  
+  #darkMode-btn, #deleteAll-btn {
+    height: 30px;
+    width: 30px;
+    font-size: 16px;
+
+  }
+
+  #header {
+    padding: 4px 4px;
+    
+  }
+  
+  #header h1 {
+    margin-left: 4px;
+    font-size: 16px;
+  }
+
+  #header button {
+    width: 30px;
+    height: 30px;
+    margin: 0.3rem;
+    margin-right: 0rem;
+  }
+  #header button i {
+    font-size: 16px;
+  }
+  
+  .select {
+    margin: 0.3rem;
+  }
+  
+  select {
+    width: 5.5rem;
+    height: 2rem;
+    padding: 0.8rem;
+    font-size: 7px;
+    border-radius: 50px;
+  }
+  
+  .select::after {
+    padding: 0.39rem;
+  }
+  
+  .tasks-table {
+    width:80%;
+    margin-top: 150px;
+    margin-left: 10%;
+  }
+
+  #task-info {
+    font-size: 10px;
+    width: 60%;
+    margin-left: 4px;
+  }
+
+  #task-date {
+    font-size: 15px;
+    margin-right: 3px;
+  }
+  
+  #task-actions {
+    gap: 0.4rem;
+  }
+
+  #task-actions button {
+    width: 25px;
+    height: 25px;
+  }
+  
+  #task-actions button span{
+    font-size: 13px;
+  }
+
+  .footer {
+    padding: 5px;
+  }
+  
+  
+  .footer-title {
+    margin-left: 5px;
+    margin-top: 15px;
+    font-size: 0.9em;
+    font-weight: 600;
+  }
+
+  
+  .social-icons {
+    margin-right: 10px;
+  }
+  
+  .social-icons a {
+
+    margin: 0 5px;
+    padding: 5px;
+    font-size: 20px;
+    transition: all 0.5s ease;
+  }
+}
+
+
+@media (max-width: 380px){
+
+  .nav-container{
+    width: 100%;
+  }
+
+  nav h2{
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 12px;
+  }
+
+  .search-bar{
+    padding:  0.2rem 0.1rem;
+  }
+  
+  .search-bar input[type="search"] {
+    width: 100px;
+    font-size: 0.45rem;
+  }
+  
+  
+  .search-bar span{
+    margin-top:32px;
+  }
+
+  #search-btn{
+    font-size: 9px;
+    width: 15px;
+    height: 15px;
+    margin-top: 8px;
+    margin-left: 5px;
+  }
+  
+  nav .nav-buttons{
+    gap: 0.3rem;
+    margin-right: 10px;
+  }
+  
+  #darkMode-btn, #deleteAll-btn {
+    height: 28px;
+    width: 28px;
+    font-size: 15px;
+
+  }
+
+  #header {
+    padding: 3px 3px;
+    
+  }
+  
+  #header h1 {
+    margin-left: 4px;
+    font-size: 12px;
+  }
+
+  #header button {
+    width: 30px;
+    height: 30px;
+    margin: 0.3rem;
+    margin-right: 0rem;
+  }
+  #header button i {
+    font-size: 16px;
+  }
+  
+  .select {
+    margin: 0.2rem;
+  }
+  
+  select {
+    width: 4.5rem;
+    height: 2rem;
+    padding: 0.6rem;
+    font-size: 6px;
+    border-radius: 50px;
+  }
+  
+  .select::after {
+    padding: 0.23rem;
+  }
+  
+  .tasks-table {
+    width:80%;
+    margin-top: 150px;
+    margin-left: 10%;
+  }
+
+  #task-info {
+    font-size: 9px;
+    width: 58%;
+    margin-left: 0px;
+  }
+
+  #task-date {
+    font-size: 13px;
+    margin-right: 3px;
+  }
+  
+  #task-actions {
+    gap: 0.3rem;
+  }
+
+  #task-actions button {
+    width: 23px;
+    height: 23px;
+  }
+  
+  #task-actions button span{
+    font-size: 11px;
+  }
+
+  .footer {
+    padding: 4px;
+  }
+  
+  
+  .footer-title {
+    margin-left: 5px;
+    margin-top: 10px;
+    font-size: 0.65em;
+    font-weight: 600;
+  }
+
+  
+  .social-icons {
+    margin-right: 10px;
+  }
+  
+  .social-icons a {
+
+    margin: 0 5px;
+    padding: 4px;
+    font-size: 14px;
+  }
+}
