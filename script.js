@@ -1,26 +1,32 @@
 
-let tasks = []
+  // Array to hold the tasks.
+  let tasks = []
 
-function getTasksFromStorage(){
-  let retrievedTasks = JSON.parse(localStorage.getItem("tasks"))
-  tasks = retrievedTasks ?? []
+  /**
+   * Fetches tasks from the local storage and sets it to the tasks array.
+   */
+  function getTasksFromStorage(){
+    // Retrieving tasks from local storage and parsing them into a JavaScript array.
+    let retrievedTasks = JSON.parse(localStorage.getItem("tasks"));
+    
+    // If retrievedTasks is null or undefined, default to an empty array.
+    tasks = retrievedTasks ?? [];
+  }
 
-  // if(retrievedTasks == null){
-  //   tasks = []
-  // }else{
-  //   tasks = retrievedTasks
-  // }
-}
+  // Call function to fetch tasks from local storage immediately.
+  getTasksFromStorage();
 
-getTasksFromStorage()
+  /**
+   * Populates the task list on the web page based on the current state of the tasks array.
+   */
+  function fillTaskInThePage(){
+    // Clearing the tasks container.
+    document.getElementById("tasks").innerHTML = "";
+    let index = 0;
 
-
-function fillTaskInThePage(){
-  document.getElementById("tasks").innerHTML = ""
-
-  let index = 0
-  for (var task of tasks) {
-    let content = 
+    // Iterating over each task and adding its HTML to the tasks container.
+    for (var task of tasks) {
+      let content = 
       `<div class="task ${task.isDone ? 'done' : ''}" data-type="${task.isDone ? 'completed' : 'incomplete'}">
 
         <div id="task-info">
@@ -63,178 +69,215 @@ function fillTaskInThePage(){
           </button>
         </div>
       </div>`
-
-    document.getElementById("tasks").innerHTML += content
-    index++
-  }
-}
-
-fillTaskInThePage()
-
-function addTask(){
-  let date = new Date()
-  let fullDate = date.getDate() +"/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " | " + date.getHours() + ":" + date.getMinutes()
-  let taskTitle = prompt("What would you like to name this task?");
-
-  while (taskTitle === "") {
-    alert("Could you please provide a name for this task?");
-    taskTitle = prompt("What would you like to name this task?");
-  }
-
-  if (taskTitle != null) {
-    let taskObj = {
-      "title": taskTitle,
-      "date": fullDate,
-      "isDone": false
+      
+      document.getElementById("tasks").innerHTML += content;
+      index++;
     }
-    tasks.push(taskObj)
-    storeTasks()
-    checkSelectStatus()
-    fillTaskInThePage()
-    getSelectedOption()
   }
-}
 
+  // Call function to populate the tasks on the web page immediately.
+  fillTaskInThePage();
 
-function deleteTask(index) {
-  let task = tasks[index];
-  let confirmationMessage = "Are you sure you want to delete: " + task.title;
-  let taskElement = document.querySelectorAll(".task")[index];
+  /**
+   * Adds a new task.
+   */
+  function addTask(){
+    // Fetching the current date and time in a specific format.
+    let date = new Date();
+    let fullDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} | ${date.getHours()}:${date.getMinutes()}`;
+    let taskTitle = prompt("What would you like to name this task?");
 
-  if (confirm(confirmationMessage)) {
-    // Apply the fadeOut animation
-    taskElement.classList.add("animate__animated", "animate__lightSpeedOutRight");
+    // Keep prompting the user until a valid title is provided.
+    while (taskTitle === "") {
+      alert("Could you please provide a name for this task?");
+      taskTitle = prompt("What would you like to name this task?");
+    }
 
-    // Wait for the animation to complete (700ms = 0.7s)
-    setTimeout(() => {
-      tasks.splice(index, 1);
-      storeTasks();
+    // If the user didn't cancel the prompt, create a task object and add it to the tasks array.
+    if (taskTitle != null) {
+      let taskObj = {
+        "title": taskTitle,
+        "date": fullDate,
+        "isDone": false
+      }
+      tasks.push(taskObj);
+      storeTasks();  // Saving tasks to local storage.
       checkSelectStatus();
-      fillTaskInThePage();
+      fillTaskInThePage();  // Refreshing the tasks list on the web page.
       getSelectedOption();
-    }, 1000);
-  }
-}
-
-function editTask(index){
-  let task = tasks[index]
-  let newTaskTitle = prompt("What would you like to name the new task?", task.title);
-  let taskElement = document.querySelectorAll(".task h2")[index];
-
-  if(newTaskTitle != null && newTaskTitle != ""){
-
-    taskElement.classList.add("animate__animated", "animate__fadeOut");
-    setTimeout(() => {
-     task.title = newTaskTitle
-     storeTasks()
-     checkSelectStatus()
-     fillTaskInThePage()
-     getSelectedOption()
-     }, 1000);
     }
   }
 
+  /**
+   * Deletes the task at the specified index after a confirmation.
+   * @param {number} index - The index of the task in the tasks array.
+   */
+  function deleteTask(index) {
+    let task = tasks[index];
+    let confirmationMessage = "Are you sure you want to delete: " + task.title;
+    let taskElement = document.querySelectorAll(".task")[index];
+
+    // If the user confirms the deletion, apply a fadeOut animation and then delete the task.
+    if (confirm(confirmationMessage)) {
+      taskElement.classList.add("animate__animated", "animate__lightSpeedOutRight");
+      setTimeout(() => {
+        tasks.splice(index, 1);
+        storeTasks();  // Update the tasks in local storage.
+        checkSelectStatus();
+        fillTaskInThePage();  // Refresh the tasks list on the web page.
+        getSelectedOption();
+      }, 1000);
+    }
+  }
+
+  /**
+   * Edits the task at the specified index.
+   * @param {number} index - The index of the task in the tasks array.
+   */
+  function editTask(index){
+    let task = tasks[index];
+    let newTaskTitle = prompt("What would you like to name the new task?", task.title);
+    let taskElement = document.querySelectorAll(".task h2")[index];
+
+    // If the user provides a valid new title, apply a fadeOut animation and then edit the task.
+    if(newTaskTitle != null && newTaskTitle != ""){
+      taskElement.classList.add("animate__animated", "animate__fadeOut");
+      setTimeout(() => {
+        task.title = newTaskTitle;
+        storeTasks();  // Update the tasks in local storage.
+        checkSelectStatus();
+        fillTaskInThePage();  // Refresh the tasks list on the web page.
+        getSelectedOption();
+      }, 1000);
+    }
+  }
+
+  /**
+   * Toggles the completion status of the task at the specified index.
+   * @param {number} index - The index of the task in the tasks array.
+   */
   function toggleTaskCompletion(index){
-    let task = tasks[index]
+    let task = tasks[index];
     let taskElement = document.querySelectorAll(".task")[index];
     taskElement.classList.add("animate__animated", "animate__fadeOut");
     setTimeout(() => {
-      task.isDone = !task.isDone
-      storeTasks()
-      checkSelectStatus()
-      fillTaskInThePage()
-      getSelectedOption()
-    }, 900)
+      task.isDone = !task.isDone;
+      storeTasks();  // Update the tasks in local storage.
+      checkSelectStatus();
+      fillTaskInThePage();  // Refresh the tasks list on the web page.
+      getSelectedOption();
+    }, 900);
   }
 
+  /**
+   * Filters and displays tasks based on the selected filter option.
+   */
   function getSelectedOption(){
     const tasksList = document.getElementById('tasks').children;
     const filterSelect = document.getElementById('filter-todo');
     const filterValue = filterSelect.value;
-    
+
+    // Show/Hide tasks based on the selected filter value.
     for (let i = 0; i < tasksList.length; i++) {
       const task = tasksList[i];
-      
       if (filterValue === 'all' || task.dataset.type === filterValue) {
         task.style.display = 'flex';
       } else {
         task.style.display = 'none';
-        
       }
     }
   }
 
-  
+  /**
+   * Checks the filter select status and updates it.
+   */
   function checkSelectStatus(){
-    const filterSelect = document.getElementById('filter-todo').value
+    const filterSelect = document.getElementById('filter-todo').value;
 
-     if(filterSelect == "all"){
-     filterSelect.selectedIndex = 0
-     } else if(filterSelect == "complete"){
-     filterSelect.selectedIndex = 1
-     }else if(filterSelect == "incomplete"){
-     filterSelect.selectedIndex = 2
-     } 
+    // Adjusting the select index based on the current value.
+    if(filterSelect == "all"){
+      filterSelect.selectedIndex = 0;
+    } else if(filterSelect == "complete"){
+      filterSelect.selectedIndex = 1;
+    }else if(filterSelect == "incomplete"){
+      filterSelect.selectedIndex = 2;
+    } 
   }
 
-
+  /**
+   * Deletes all tasks after a confirmation.
+   */
   function deleteAllTasks(){
+    // Confirmation message to alert the user before deleting all tasks.
     let confirmationMessage = "Warning! This action will delete ALL tasks, including any unfinished or completed ones. Are you sure you want to proceed?";
-    let taskElements = document.querySelectorAll(".task")
     
+    // Fetch all the task elements from the DOM.
+    let taskElements = document.querySelectorAll(".task");
+    
+    // Check if there are no tasks, then display an alert.
     if(tasks.length == 0) {
-      alert("There are no tasks to delete!")
+      alert("There are no tasks to delete!");
       return;
-    } else if(confirm(confirmationMessage)) {
+    } else if(confirm(confirmationMessage)) { // Display confirmation alert.
+      // If user confirms, animate each task to fade out.
       for (let i = 0; i < taskElements.length; i++) {
         taskElements[i].classList.add("animate__animated", "animate__fadeOut");
       }
-  
+
+      // After the animation ends, delete all tasks and update the tasks in storage and on the page.
       setTimeout(() => {
-        tasks.splice(0, tasks.length)
-        storeTasks()
-        fillTaskInThePage()
+        tasks.splice(0, tasks.length);
+        storeTasks();
+        fillTaskInThePage();
       }, 600);
     }
-  };
+}
 
-  function searchForTask() {
-      const userInput = document.getElementById("search-box").value.toLowerCase();
-      const filterSelect = document.getElementById('filter-todo')
+// Function to search for a task by its title.
+function searchForTask() {
+    // Fetch the search input from the user.
+    const userInput = document.getElementById("search-box").value.toLowerCase();
+    
+    // Fetch the select filter from the DOM.
+    const filterSelect = document.getElementById('filter-todo');
 
-      for (let i = 0; i < tasks.length; i++) {
+    // Loop through all tasks to see which one matches the search input.
+    for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
         const taskTitle = task.title.toLowerCase();
         const taskElement = document.getElementsByClassName("task")[i];
 
+        // If user input is empty, display all tasks.
         if(userInput == ""){
           taskElement.style.display = "flex";
           taskElement.classList.add("animate__animated", "animate__fadeIn");
-        }else{
+        } else {
+          // Show only tasks that match the user input and hide the rest.
           if (taskTitle === userInput) {
             taskElement.style.display = "flex";
             taskElement.classList.add("animate__animated", "animate__fadeIn");
-            
           } else {
             taskElement.style.display = "none";
           }
-        }
-          
-      }
-      filterSelect.selectedIndex = 0
-    }  
+        }   
+    }
+    
+    // Reset the filter select to "all" after a search.
+    filterSelect.selectedIndex = 0;
+}  
 
-  function changeBackgroundColor() {
+// Function to switch between light and dark mode.
+function changeBackgroundColor() {
     const toggle = document.getElementById("darkMode-btn");
     const icon = toggle.querySelector("i");
     const body = document.querySelector("body");
     const html = document.querySelector("html");
   
-    // Toggle the icon classes
+    // Toggle between moon and brightness icons.
     icon.classList.toggle("bi-moon-fill");
     icon.classList.toggle("bi-brightness-high-fill");
   
-    // Check if the 'bi-moon-fill' class is present
+    // Apply dark or light mode based on the current icon.
     if (icon.classList.contains("bi-moon-fill")) {
       body.style.background = "rgb(227 227 227)";
       html.style.background = "rgb(227 227 227)";
@@ -244,15 +287,18 @@ function editTask(index){
       html.style.background = "rgb(54, 23, 115)";
       localStorage.setItem("background", "dark");
     }
-  }
-  
-  function loadBackgroundColor() {
+}
+
+// Load the background color from local storage on page load.
+function loadBackgroundColor() {
+    // Fetch the user's background preference from storage.
     const storedBackground = localStorage.getItem("background");
     const toggle = document.getElementById("darkMode-btn");
     const icon = toggle.querySelector("i");
     const body = document.querySelector("body");
     const html = document.querySelector("html");
   
+    // Apply the stored background color.
     if (storedBackground === "dark") {
       body.style.background = "rgb(54, 23, 115)";
       html.style.background = "rgb(54, 23, 115)";
@@ -264,17 +310,18 @@ function editTask(index){
       icon.classList.remove("bi-brightness-high-fill");
       icon.classList.add("bi-moon-fill");
     }
-  }
-  
-  // Call the loadBackgroundColor function when the DOM is fully loaded
-  document.addEventListener("DOMContentLoaded", loadBackgroundColor);
+}
 
-  // ============ STORAGE FUNCTION ============
+// Call the loadBackgroundColor function when the page is fully loaded.
+document.addEventListener("DOMContentLoaded", loadBackgroundColor);
 
-  function storeTasks(){
-    let tasksString = JSON.stringify(tasks)
-    localStorage.setItem("tasks", tasksString)
-  }
+// ============ STORAGE FUNCTION ============
+
+// Store the current tasks in local storage.
+function storeTasks(){
+    let tasksString = JSON.stringify(tasks); // Convert tasks to a string format.
+    localStorage.setItem("tasks", tasksString); // Store the stringified tasks.
+}
 
 
 
