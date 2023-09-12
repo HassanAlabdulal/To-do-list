@@ -43,7 +43,13 @@ nav h2{
   font-weight: bold;
   letter-spacing: 3px;
   color: white;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  transition: all ease 0.9s;
+}
+
+nav h2:hover{
+  transform: scale(1.1);
+  text-shadow: 3px 3px 6px rgba(0,0,0,0.9);
 }
 
 nav .nav-container{
@@ -68,7 +74,6 @@ nav .nav-container{
   font-size: 1.2rem;
   color: hsl(252, 30%, 17%);
 }
-
 
 .search-bar span{
   margin-top: 6px;
