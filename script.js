@@ -84,7 +84,13 @@
   function addTask(){
     // Fetching the current date and time in a specific format.
     let date = new Date();
-    let fullDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} | ${date.getHours()}:${date.getMinutes()}`;
+    let minutes = date.getMinutes();
+    
+    if (minutes >= 0 && minutes < 10) {
+        minutes = "0" + minutes
+    }
+
+    let fullDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} | ${date.getHours()}:${minutes}`;
     let taskTitle = prompt("What would you like to name this task?");
 
     // Keep prompting the user until a valid title is provided.
