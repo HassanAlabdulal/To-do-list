@@ -1,5 +1,5 @@
 # To-do-list
-<h3> This web Application is a digital tool designed to help users keep track of tasks and manage their daily responsibilities. It typically offers the following features: </h3>
+<h3> This web Application is a tool designed to help users keep track of tasks and manage their daily responsibilities. It typically offers the following features: </h3>
 
   1- Task Entry: Users can easily add tasks or items to their to-do list. They can provide a task name and the start date of the task. <br><br>
   2- Task Filtering: Users can filter tasks based on specific criteria (e.g., show only incomplete tasks, show completed tasks) for better management. <br><br>
