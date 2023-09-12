@@ -41,7 +41,9 @@ nav h2{
   margin-left: 50px;
   margin-top: 10px;
   font-weight: bold;
+  letter-spacing: 3px;
   color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
 
 nav .nav-container{
@@ -93,8 +95,6 @@ nav .nav-buttons{
   margin-left: 3px;
   margin-top: 1px;
 }
-
-/* #deleteAll-btn */
 
 #darkMode-btn:hover, #deleteAll-btn:hover {
   color: white;
@@ -194,6 +194,7 @@ button:hover {
 #header h1 {
   font-weight: bold;
   margin-left: 85px;
+  letter-spacing: 1.5px;
 }
 
 select {
