@@ -41,7 +41,7 @@ nav h2{
   margin-left: 50px;
   margin-top: 10px;
   font-weight: bold;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   color: white;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   transition: all ease 0.9s;
@@ -199,7 +199,7 @@ button:hover {
 #header h1 {
   font-weight: bold;
   margin-left: 85px;
-  letter-spacing: 1.5px;
+  letter-spacing: 0.5px;
 }
 
 select {
