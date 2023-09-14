@@ -289,8 +289,8 @@ function changeBackgroundColor() {
       html.style.background = "rgb(227 227 227)";
       localStorage.setItem("background", "light");
     } else {
-      body.style.background = "rgb(54, 23, 115)";
-      html.style.background = "rgb(54, 23, 115)";
+      body.style.background = "rgb(41,41,41)";
+      html.style.background = "rgb(41,41,41)";
       localStorage.setItem("background", "dark");
     }
 }
@@ -306,8 +306,8 @@ function loadBackgroundColor() {
   
     // Apply the stored background color.
     if (storedBackground === "dark") {
-      body.style.background = "rgb(54, 23, 115)";
-      html.style.background = "rgb(54, 23, 115)";
+      body.style.background = "rgb(41,41,41)";
+      html.style.background = "rgb(41,41,41)";
       icon.classList.remove("bi-moon-fill");
       icon.classList.add("bi-brightness-high-fill");
     } else {
