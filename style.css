@@ -5,7 +5,7 @@ html, body {
   padding: 0;
   font-family: 'Poppins', sans-serif;
   background-color: white;
-  transition: 2s;
+  transition: 1s ease;
   width: 100%;
   scroll-behavior: smooth; 
 }
@@ -63,6 +63,7 @@ nav .nav-container{
   border-radius: 2rem;
   padding:  0.6rem 1rem;
   display: flex;
+  transition: 1.5s ease;
 }
 
 .search-bar input[type="search"] {
@@ -72,7 +73,7 @@ nav .nav-container{
   width: 30vw;
   margin-left: 1rem;
   font-size: 1.2rem;
-  color: hsl(252, 30%, 17%);
+  /* color: hsl(0, 0%, 96%); to change the color of the text*/ 
 }
 
 .search-bar span{
@@ -82,6 +83,8 @@ nav .nav-container{
 #search-btn{
   box-shadow: 0px 0px 0px;
   background-color: hsl(252, 30%, 98%);
+  transition: 1.5s ease;
+
 }
 
 nav .nav-buttons{
@@ -93,17 +96,19 @@ nav .nav-buttons{
 
 #darkMode-btn, #deleteAll-btn {
   background-color: white;
-  color: rgb(255, 200 ,0);
+  color: rgb(32,33,35);
   height: 50px;
   width: 50px;
   font-size: 28px;
   margin-left: 3px;
   margin-top: 1px;
+  transition: 1s ease;
+
 }
 
 #darkMode-btn:hover, #deleteAll-btn:hover {
   color: white;
-  background-color: rgb(255, 200 ,0);
+  background-color: rgb(32,33,35);
 }
 
 
@@ -117,6 +122,7 @@ nav .nav-buttons{
   margin-top: 250px;
   margin-left: 20%;
   background-color: rgb(239, 239 ,239);
+  transition: 1s ease;
 }
 
 
@@ -129,7 +135,7 @@ button {
   height: 40px;
   border-radius: 50%;
   line-height: 0;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
 }
 
 button:hover {
@@ -139,15 +145,17 @@ button:hover {
 
 #add-btn {
   background: white;
-  color: rgb(255, 200 ,0);
+  color: rgb(32,33,35);
   margin: 1rem;
   width: 50px;
-  height: 50px
+  height: 50px;
+  transition: 1s ease;
+
 }
 
 #add-btn:hover {
   color: white;
-  background: rgb(255, 200 ,0);
+  background: rgb(32,33,35);
 }
 
 #task-info {
@@ -208,6 +216,8 @@ select {
   appearance: none;
   outline: none;
   border: none;
+  /* background-color: rgb(22, 22, 22);  */
+
 }
 
 .select {
@@ -215,7 +225,9 @@ select {
   position: relative;
   overflow: hidden;
   border-radius: 50px;
+  /* color: rgb(32,33,35); */
 }
+
 
 select {
   color:black;
@@ -229,7 +241,7 @@ select {
 .select::after {
   content: "\25BC";
   position: absolute;
-  background:rgb(255, 200 ,0);
+  background:rgb(32,33,35);
   top: 0;
   right: 0;
   padding: 1rem;
@@ -237,10 +249,10 @@ select {
   transition: all 0.3s ease;
 }
 
-.select::hover::after {
+/* .select:hover::after {
   background: white;
-  color: rgb(255, 200 ,0)
-}
+  color: rgb(32,33,35)
+} */
 
 
 .footer {

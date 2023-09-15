@@ -274,49 +274,179 @@ function searchForTask() {
 
 // Function to switch between light and dark mode.
 function changeBackgroundColor() {
-    const toggle = document.getElementById("darkMode-btn");
-    const icon = toggle.querySelector("i");
-    const body = document.querySelector("body");
-    const html = document.querySelector("html");
-  
-    // Toggle between moon and brightness icons.
-    icon.classList.toggle("bi-moon-fill");
-    icon.classList.toggle("bi-brightness-high-fill");
-  
-    // Apply dark or light mode based on the current icon.
-    if (icon.classList.contains("bi-moon-fill")) {
-      body.style.background = "rgb(227 227 227)";
-      html.style.background = "rgb(227 227 227)";
+  const toggle = document.getElementById("darkMode-btn");
+  const icon = toggle.querySelector("i");
+  const body = document.querySelector("body");
+  const html = document.querySelector("html");
+  const content = document.querySelector(".tasks-table");
+  const searchBar = document.querySelector(".search-bar");
+  const searchButton = document.querySelector(".bi bi-search");
+  const deleteBtn = document.querySelector("#deleteAll-btn");
+  const darkModeBtn = document.querySelector("#darkMode-btn");
+  const addBtn = document.querySelector("#add-btn");
+
+  const allElements = document.querySelectorAll('*');
+
+  // Toggle between moon and brightness icons.
+  icon.classList.toggle("bi-moon-fill");
+  icon.classList.toggle("bi-brightness-high-fill");
+
+  // Apply dark or light mode based on the current icon.
+  if (icon.classList.contains("bi-moon-fill")) {
+      body.style.background = "rgb(227, 227, 227)";
+      html.style.background = "rgb(227, 227, 227)";
+      content.style.background = "rgb(239, 239 ,239)";
+      searchBar.style.background = "hsl(252, 30%, 98%)";
+      searchButton.style.background = "hsl(252, 30%, 98%)";
+      deleteBtn.style.background = "white";
+      darkModeBtn.style.background = "white";
+      addBtn.style.background = "white";
+
+      deleteBtn.style.color = "rgb(32,33,35)";
+      darkModeBtn.style.color = "rgb(32,33,35)";
+      addBtn.style.color = "rgb(32,33,35)";
+
       localStorage.setItem("background", "light");
-    } else {
-      body.style.background = "rgb(54, 23, 115)";
-      html.style.background = "rgb(54, 23, 115)";
+  } else {
+      body.style.background = "rgb(32,33,35)";
+      html.style.background = "rgb(32,33,35)";
+      content.style.background = "rgb(61,64,67)";
+      searchBar.style.background = "rgb(61,64,67)";
+      searchButton.style.background = "white";
+
+      deleteBtn.style.background = "rgb(32,33,35)";
+      darkModeBtn.style.background = "rgb(32,33,35)";
+      addBtn.style.background = "rgb(32,33,35)";
+      
+      deleteBtn.style.color = "white";
+      darkModeBtn.style.color = "white";
+      addBtn.style.color = "white";
+
       localStorage.setItem("background", "dark");
-    }
+  }
 }
 
 // Load the background color from local storage on page load.
 function loadBackgroundColor() {
-    // Fetch the user's background preference from storage.
-    const storedBackground = localStorage.getItem("background");
-    const toggle = document.getElementById("darkMode-btn");
-    const icon = toggle.querySelector("i");
-    const body = document.querySelector("body");
-    const html = document.querySelector("html");
-  
-    // Apply the stored background color.
-    if (storedBackground === "dark") {
-      body.style.background = "rgb(54, 23, 115)";
-      html.style.background = "rgb(54, 23, 115)";
+  const storedBackground = localStorage.getItem("background");
+  const toggle = document.getElementById("darkMode-btn");
+  const icon = toggle.querySelector("i");
+  const body = document.querySelector("body");
+  const html = document.querySelector("html");
+  const content = document.querySelector(".tasks-table");
+  const searchBar = document.querySelector(".search-bar");
+  const searchButton = document.querySelector(".bi bi-search");
+  const deleteBtn = document.querySelector("#deleteAll-btn");
+  const darkModeBtn = document.querySelector("#darkMode-btn");
+  const addBtn = document.querySelector("#add-btn");
+
+  // const allElements = document.querySelectorAll('*');
+
+  // Apply the stored theme
+  if (storedBackground === "dark") {
+      body.style.background = "rgb(32,33,35)";
+      html.style.background = "rgb(32,33,35)";
+      content.style.background = "rgb(61,64,67)";
+      searchBar.style.background = "rgb(61,64,67)";
+      searchButton.style.background = "white";
+
+      deleteBtn.style.background = "rgb(32,33,35)";
+      darkModeBtn.style.background = "rgb(32,33,35)";
+      addBtn.style.background = "rgb(32,33,35)";
+
+      deleteBtn.style.color = "white";
+      darkModeBtn.style.color = "white";
+      addBtn.style.color = "white";
+
+    //   allElements.forEach(element => {
+    //     element.style.color = 'white';
+    // });
+
       icon.classList.remove("bi-moon-fill");
       icon.classList.add("bi-brightness-high-fill");
-    } else {
-      body.style.background = "rgb(227 227 227)";
-      html.style.background = "rgb(227 227 227)";
+  } else {
+      body.style.background = "rgb(227, 227, 227)";
+      html.style.background = "rgb(227, 227, 227)";
+      content.style.background = "rgb(239, 239 ,239)";
+      searchBar.style.background = "hsl(252, 30%, 98%)";
+      searchButton.style.background = "hsl(252, 30%, 98%)";
+      deleteBtn.style.background = "white";
+      darkModeBtn.style.background = "white";
+      addBtn.style.background = "white";
+
+      deleteBtn.style.color = "rgb(32,33,35)";
+      darkModeBtn.style.color = "rgb(32,33,35)";
+      addBtn.style.color = "rgb(32,33,35)";
+
+      
+
       icon.classList.remove("bi-brightness-high-fill");
       icon.classList.add("bi-moon-fill");
+  }
+
+  darkModeBtn.addEventListener('mouseenter', function() {
+      if(icon.classList.contains("bi-moon-fill")) {
+          darkModeBtn.style.background = "rgb(32,33,35)";
+          darkModeBtn.style.color = "white";
+      } else {
+          darkModeBtn.style.background = "white";
+          darkModeBtn.style.color = "rgb(32,33,35)";
+      }
+  });
+
+  darkModeBtn.addEventListener('mouseleave', function() {
+      if(icon.classList.contains("bi-moon-fill")) {
+          darkModeBtn.style.background = "white";
+          darkModeBtn.style.color = "rgb(32,33,35)";
+      } else {
+          darkModeBtn.style.background = "rgb(32,33,35)";
+          darkModeBtn.style.color = "white";
+      }
+  });
+
+  addBtn.addEventListener('mouseenter', function() {
+    if(icon.classList.contains("bi-moon-fill")) {
+        addBtn.style.background = "rgb(32,33,35)";
+        addBtn.style.color = "white";
+    } else {
+        addBtn.style.background = "white";
+        addBtn.style.color = "rgb(32,33,35)";
     }
+});
+
+addBtn.addEventListener('mouseleave', function() {
+    if(icon.classList.contains("bi-moon-fill")) {
+        addBtn.style.background = "white";
+        addBtn.style.color = "rgb(32,33,35)";
+    } else {
+        addBtn.style.background = "rgb(32,33,35)";
+        addBtn.style.color = "white";
+    }
+});
+
+deleteBtn.addEventListener('mouseenter', function() {
+  if(icon.classList.contains("bi-moon-fill")) {
+      deleteBtn.style.background = "rgb(32,33,35)";
+      deleteBtn.style.color = "white";
+  } else {
+      deleteBtn.style.background = "white";
+      deleteBtn.style.color = "rgb(32,33,35)";
+  }
+});
+
+deleteBtn.addEventListener('mouseleave', function() {
+  if(icon.classList.contains("bi-moon-fill")) {
+      deleteBtn.style.background = "white";
+      deleteBtn.style.color = "rgb(32,33,35)";
+  } else {
+      deleteBtn.style.background = "rgb(32,33,35)";
+      deleteBtn.style.color = "white";
+  }
+});
 }
+
+// This ensures the background color is loaded when the page is loaded
+window.onload = loadBackgroundColor;
 
 // Call the loadBackgroundColor function when the page is fully loaded.
 document.addEventListener("DOMContentLoaded", loadBackgroundColor);
