@@ -272,20 +272,24 @@ function searchForTask() {
     filterSelect.selectedIndex = 0;
 }  
 
-const elements = {
-  toggle: document.getElementById("darkMode-btn"),
-  icon: document.getElementById("darkMode-btn").querySelector("i"),
-  body: document.querySelector("body"),
-  html: document.querySelector("html"),
-  content: document.querySelector(".tasks-table"),
-  searchBar: document.querySelector(".search-bar"),
-  searchBox: document.querySelector('search-box'),
-  searchButton: document.querySelector("search-btn"),
-  deleteBtn: document.querySelector("deleteAll-btn"),
-  darkModeBtn: document.querySelector("darkMode-btn"),
-  addBtn: document.querySelector("add-btn"),
-  task: document.querySelector(".task")
-};
+let elements;
+
+function initElements() {
+  elements = {
+    toggle: document.getElementById("darkMode-btn"),
+    icon: document.getElementById("darkMode-btn").querySelector("i"),
+    body: document.querySelector("body"),
+    html: document.querySelector("html"),
+    content: document.querySelector(".tasks-table"),
+    searchBar: document.querySelector(".search-bar"),
+    searchBox: document.querySelector('#search-box'),
+    searchButton: document.querySelector(".search-btn"),
+    deleteBtn: document.querySelector("#deleteAll-btn"),
+    darkModeBtn: document.querySelector("#darkMode-btn"),
+    addBtn: document.querySelector("#add-btn"),
+    task: document.querySelector(".task")
+  };
+}
 
 function applyDarkMode() {
   elements.body.style.background = "rgb(32,33,35)";
@@ -321,6 +325,7 @@ function applyLightMode() {
   elements.addBtn.style.color = "rgb(32,33,35)";
   elements.searchBox.style.color = "black";
   localStorage.setItem("background", "light");
+  console.log("light mode")
 }
 
 function changeBackgroundColor() {
@@ -368,14 +373,13 @@ function addButtonHoverEffect(btn) {
   });
 }
 
-// Button Hover Effects
-addButtonHoverEffect(elements.darkModeBtn);
-addButtonHoverEffect(elements.addBtn);
-addButtonHoverEffect(elements.deleteBtn);
-
-// Load background color on page load
-window.onload = loadBackgroundColor;
-document.addEventListener("DOMContentLoaded", loadBackgroundColor);
+document.addEventListener("DOMContentLoaded", function() {
+  initElements();
+  loadBackgroundColor();
+  addButtonHoverEffect(elements.darkModeBtn);
+  addButtonHoverEffect(elements.addBtn);
+  addButtonHoverEffect(elements.deleteBtn);
+});
 
 // ============ STORAGE FUNCTION ============
 
