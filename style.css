@@ -73,7 +73,6 @@ nav .nav-container{
   width: 30vw;
   margin-left: 1rem;
   font-size: 1.2rem;
-  /* color: hsl(0, 0%, 96%); to change the color of the text*/ 
 }
 
 .search-bar span{
@@ -95,8 +94,8 @@ nav .nav-buttons{
 }
 
 #darkMode-btn, #deleteAll-btn {
-  background-color: white;
-  color: rgb(32,33,35);
+  background-color: rgb(32,33,35);
+  color: white;
   height: 50px;
   width: 50px;
   font-size: 28px;
@@ -107,8 +106,8 @@ nav .nav-buttons{
 }
 
 #darkMode-btn:hover, #deleteAll-btn:hover {
-  color: white;
-  background-color: rgb(32,33,35);
+  color: rgb(32,33,35);
+  background-color: white;
 }
 
 
@@ -144,8 +143,8 @@ button:hover {
 }
 
 #add-btn {
-  background: white;
-  color: rgb(32,33,35);
+  background: rgb(32,33,35);
+  color: white;
   margin: 1rem;
   width: 50px;
   height: 50px;
@@ -154,8 +153,8 @@ button:hover {
 }
 
 #add-btn:hover {
-  color: white;
-  background: rgb(32,33,35);
+  color: rgb(32,33,35);
+  background: white;
 }
 
 #task-info {

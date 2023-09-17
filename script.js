@@ -272,183 +272,109 @@ function searchForTask() {
     filterSelect.selectedIndex = 0;
 }  
 
-// Function to switch between light and dark mode.
+const elements = {
+  toggle: document.getElementById("darkMode-btn"),
+  icon: document.getElementById("darkMode-btn").querySelector("i"),
+  body: document.querySelector("body"),
+  html: document.querySelector("html"),
+  content: document.querySelector(".tasks-table"),
+  searchBar: document.querySelector(".search-bar"),
+  searchBox: document.querySelector('search-box'),
+  searchButton: document.querySelector("search-btn"),
+  deleteBtn: document.querySelector("deleteAll-btn"),
+  darkModeBtn: document.querySelector("darkMode-btn"),
+  addBtn: document.querySelector("add-btn"),
+  task: document.querySelector(".task")
+};
+
+function applyDarkMode() {
+  elements.body.style.background = "rgb(32,33,35)";
+  elements.html.style.background = "rgb(32,33,35)";
+  elements.content.style.background = "rgb(61,64,67)";
+  elements.searchBar.style.background = "rgb(61,64,67)";
+  elements.searchButton.style.background = "rgb(61,64,67)";
+  elements.task.style.background = "#646e78";
+  elements.deleteBtn.style.background = "rgb(32,33,35)";
+  elements.darkModeBtn.style.background = "rgb(32,33,35)";
+  elements.addBtn.style.background = "rgb(32,33,35)";
+
+  elements.searchButton.style.color = "hsl(252, 30%, 98%)";
+  elements.searchBox.style.color = "white";
+  elements.deleteBtn.style.color = "white";
+  elements.darkModeBtn.style.color = "white";
+  elements.addBtn.style.color = "white";
+  localStorage.setItem("background", "dark");
+}
+
+function applyLightMode() {
+  elements.body.style.background = "rgb(227, 227, 227)";
+  elements.content.style.background = "rgb(239, 239 ,239)";
+  elements.searchBar.style.background = "hsl(252, 30%, 98%)";
+  elements.searchButton.style.background = "hsl(252, 30%, 98%)";
+  elements.task.style.background = "white";
+  elements.addBtn.style.background = "white";
+  elements.deleteBtn.style.background = "white";
+  elements.darkModeBtn.style.background = "white";
+
+  elements.deleteBtn.style.color = "rgb(32,33,35)";
+  elements.darkModeBtn.style.color = "rgb(32,33,35)";
+  elements.addBtn.style.color = "rgb(32,33,35)";
+  elements.searchBox.style.color = "black";
+  localStorage.setItem("background", "light");
+}
+
 function changeBackgroundColor() {
-  const toggle = document.getElementById("darkMode-btn");
-  const icon = toggle.querySelector("i");
-  const body = document.querySelector("body");
-  const html = document.querySelector("html");
-  const content = document.querySelector(".tasks-table");
-  const searchBar = document.querySelector(".search-bar");
-  const searchButton = document.querySelector(".bi bi-search");
-  const deleteBtn = document.querySelector("#deleteAll-btn");
-  const darkModeBtn = document.querySelector("#darkMode-btn");
-  const addBtn = document.querySelector("#add-btn");
-
-  const allElements = document.querySelectorAll('*');
-
-  // Toggle between moon and brightness icons.
-  icon.classList.toggle("bi-moon-fill");
-  icon.classList.toggle("bi-brightness-high-fill");
-
-  // Apply dark or light mode based on the current icon.
-  if (icon.classList.contains("bi-moon-fill")) {
-      body.style.background = "rgb(227, 227, 227)";
-      html.style.background = "rgb(227, 227, 227)";
-      content.style.background = "rgb(239, 239 ,239)";
-      searchBar.style.background = "hsl(252, 30%, 98%)";
-      searchButton.style.background = "hsl(252, 30%, 98%)";
-      deleteBtn.style.background = "white";
-      darkModeBtn.style.background = "white";
-      addBtn.style.background = "white";
-
-      deleteBtn.style.color = "rgb(32,33,35)";
-      darkModeBtn.style.color = "rgb(32,33,35)";
-      addBtn.style.color = "rgb(32,33,35)";
-
-      localStorage.setItem("background", "light");
+  elements.icon.classList.toggle("bi-moon-fill");
+  elements.icon.classList.toggle("bi-brightness-high-fill");
+  if (elements.icon.classList.contains("bi-moon-fill")) {
+      applyLightMode();
   } else {
-      body.style.background = "rgb(32,33,35)";
-      html.style.background = "rgb(32,33,35)";
-      content.style.background = "rgb(61,64,67)";
-      searchBar.style.background = "rgb(61,64,67)";
-      searchButton.style.background = "white";
-
-      deleteBtn.style.background = "rgb(32,33,35)";
-      darkModeBtn.style.background = "rgb(32,33,35)";
-      addBtn.style.background = "rgb(32,33,35)";
-      
-      deleteBtn.style.color = "white";
-      darkModeBtn.style.color = "white";
-      addBtn.style.color = "white";
-
-      localStorage.setItem("background", "dark");
+      applyDarkMode();
   }
 }
 
-// Load the background color from local storage on page load.
 function loadBackgroundColor() {
   const storedBackground = localStorage.getItem("background");
-  const toggle = document.getElementById("darkMode-btn");
-  const icon = toggle.querySelector("i");
-  const body = document.querySelector("body");
-  const html = document.querySelector("html");
-  const content = document.querySelector(".tasks-table");
-  const searchBar = document.querySelector(".search-bar");
-  const searchButton = document.querySelector(".bi bi-search");
-  const deleteBtn = document.querySelector("#deleteAll-btn");
-  const darkModeBtn = document.querySelector("#darkMode-btn");
-  const addBtn = document.querySelector("#add-btn");
-
-  // const allElements = document.querySelectorAll('*');
-
-  // Apply the stored theme
   if (storedBackground === "dark") {
-      body.style.background = "rgb(32,33,35)";
-      html.style.background = "rgb(32,33,35)";
-      content.style.background = "rgb(61,64,67)";
-      searchBar.style.background = "rgb(61,64,67)";
-      searchButton.style.background = "white";
-
-      deleteBtn.style.background = "rgb(32,33,35)";
-      darkModeBtn.style.background = "rgb(32,33,35)";
-      addBtn.style.background = "rgb(32,33,35)";
-
-      deleteBtn.style.color = "white";
-      darkModeBtn.style.color = "white";
-      addBtn.style.color = "white";
-
-    //   allElements.forEach(element => {
-    //     element.style.color = 'white';
-    // });
-
-      icon.classList.remove("bi-moon-fill");
-      icon.classList.add("bi-brightness-high-fill");
+      applyDarkMode();
+      elements.icon.classList.remove("bi-moon-fill");
+      elements.icon.classList.add("bi-brightness-high-fill");
   } else {
-      body.style.background = "rgb(227, 227, 227)";
-      html.style.background = "rgb(227, 227, 227)";
-      content.style.background = "rgb(239, 239 ,239)";
-      searchBar.style.background = "hsl(252, 30%, 98%)";
-      searchButton.style.background = "hsl(252, 30%, 98%)";
-      deleteBtn.style.background = "white";
-      darkModeBtn.style.background = "white";
-      addBtn.style.background = "white";
-
-      deleteBtn.style.color = "rgb(32,33,35)";
-      darkModeBtn.style.color = "rgb(32,33,35)";
-      addBtn.style.color = "rgb(32,33,35)";
-
-      
-
-      icon.classList.remove("bi-brightness-high-fill");
-      icon.classList.add("bi-moon-fill");
+      applyLightMode();
+      elements.icon.classList.remove("bi-brightness-high-fill");
+      elements.icon.classList.add("bi-moon-fill");
   }
-
-  darkModeBtn.addEventListener('mouseenter', function() {
-      if(icon.classList.contains("bi-moon-fill")) {
-          darkModeBtn.style.background = "rgb(32,33,35)";
-          darkModeBtn.style.color = "white";
-      } else {
-          darkModeBtn.style.background = "white";
-          darkModeBtn.style.color = "rgb(32,33,35)";
-      }
-  });
-
-  darkModeBtn.addEventListener('mouseleave', function() {
-      if(icon.classList.contains("bi-moon-fill")) {
-          darkModeBtn.style.background = "white";
-          darkModeBtn.style.color = "rgb(32,33,35)";
-      } else {
-          darkModeBtn.style.background = "rgb(32,33,35)";
-          darkModeBtn.style.color = "white";
-      }
-  });
-
-  addBtn.addEventListener('mouseenter', function() {
-    if(icon.classList.contains("bi-moon-fill")) {
-        addBtn.style.background = "rgb(32,33,35)";
-        addBtn.style.color = "white";
-    } else {
-        addBtn.style.background = "white";
-        addBtn.style.color = "rgb(32,33,35)";
-    }
-});
-
-addBtn.addEventListener('mouseleave', function() {
-    if(icon.classList.contains("bi-moon-fill")) {
-        addBtn.style.background = "white";
-        addBtn.style.color = "rgb(32,33,35)";
-    } else {
-        addBtn.style.background = "rgb(32,33,35)";
-        addBtn.style.color = "white";
-    }
-});
-
-deleteBtn.addEventListener('mouseenter', function() {
-  if(icon.classList.contains("bi-moon-fill")) {
-      deleteBtn.style.background = "rgb(32,33,35)";
-      deleteBtn.style.color = "white";
-  } else {
-      deleteBtn.style.background = "white";
-      deleteBtn.style.color = "rgb(32,33,35)";
-  }
-});
-
-deleteBtn.addEventListener('mouseleave', function() {
-  if(icon.classList.contains("bi-moon-fill")) {
-      deleteBtn.style.background = "white";
-      deleteBtn.style.color = "rgb(32,33,35)";
-  } else {
-      deleteBtn.style.background = "rgb(32,33,35)";
-      deleteBtn.style.color = "white";
-  }
-});
 }
 
-// This ensures the background color is loaded when the page is loaded
-window.onload = loadBackgroundColor;
+function addButtonHoverEffect(btn) {
+  btn.addEventListener('mouseenter', function() {
+      if(elements.icon.classList.contains("bi-moon-fill")) {
+          btn.style.background = "rgb(32,33,35)";
+          btn.style.color = "white";
+      } else {
+          btn.style.background = "white";
+          btn.style.color = "rgb(32,33,35)";
+      }
+  });
 
-// Call the loadBackgroundColor function when the page is fully loaded.
+  btn.addEventListener('mouseleave', function() {
+      if(elements.icon.classList.contains("bi-moon-fill")) {
+          btn.style.background = "white";
+          btn.style.color = "rgb(32,33,35)";
+      } else {
+          btn.style.background = "rgb(32,33,35)";
+          btn.style.color = "white";
+      }
+  });
+}
+
+// Button Hover Effects
+addButtonHoverEffect(elements.darkModeBtn);
+addButtonHoverEffect(elements.addBtn);
+addButtonHoverEffect(elements.deleteBtn);
+
+// Load background color on page load
+window.onload = loadBackgroundColor;
 document.addEventListener("DOMContentLoaded", loadBackgroundColor);
 
 // ============ STORAGE FUNCTION ============
